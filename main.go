@@ -134,7 +134,7 @@ func mwLog(h http.Handler) http.Handler {
 		lw.headerWritten = false
 		defer writers.Put(lw)
 
-		h.ServeHTTP(w, r)
+		h.ServeHTTP(lw, r)
 
 		logData["code"] = lw.Code()
 		logData["tts_ns"] = time.Since(start).Nanoseconds() / 1e6 // time to serve in nano seconds
